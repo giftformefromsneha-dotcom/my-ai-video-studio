@@ -1,1 +1,75 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My AI Video Studio</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #090d18;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+    .container { max-width: 700px; margin: auto; }
+    h1 { color: #a78bfa; }
+    .card {
+      background: #151c2e;
+      padding: 20px;
+      border-radius: 16px;
+      margin-top: 18px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 13px;
+      margin-top: 10px;
+      border: 0;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+    button {
+      background: #7c3aed;
+      color: white;
+      font-weight: bold;
+    }
+    p { color: #b9c1d2; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 My AI Video Studio</h1>
+    <p>Welcome to your private AI creation studio.</p>
+
+    <div class="card">
+      <h2>🎨 Create Image</h2>
+      <input placeholder="Describe your image">
+      <button>Generate Image</button>
+    </div>
+
+    <div class="card">
+      <h2>🎥 Create Video</h2>
+      <input placeholder="Describe your video">
+      <select>
+        <option>Realistic</option>
+        <option>Anime</option>
+        <option>Other Style</option>
+      </select>
+      <select>
+        <option>2 Seconds</option>
+        <option>3 Seconds</option>
+        <option>5 Seconds</option>
+      </select>
+      <button>Generate Video</button>
+      <p>Video generation will be connected in a later step.</p>
+    </div>
+
+    <div class="card">
+      <h2>👤 My Characters</h2>
+      <p>Your saved characters will appear here.</p>
+    </div>
+  </div>
+</body>
+</html>
