@@ -2,74 +2,477 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My AI Video Studio</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 24px;
-      background: #090d18;
-      color: white;
-      font-family: Arial, sans-serif;
-    }
-    .container { max-width: 700px; margin: auto; }
-    h1 { color: #a78bfa; }
-    .card {
-      background: #151c2e;
-      padding: 20px;
-      border-radius: 16px;
-      margin-top: 18px;
-    }
-    input, select, button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      border: 0;
-      border-radius: 9px;
-      font-size: 16px;
-    }
-    button {
-      background: #7c3aed;
-      color: white;
-      font-weight: bold;
-    }
-    p { color: #b9c1d2; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090910">
+<title>NOVA AI — Ultra Pro Studio</title>
+<style>
+:root{
+--bg:#090910;--surface:#11111c;--surface2:#191927;
+--line:#ffffff12;--text:#f5f3ff;--muted:#9391a9;
+--purple:#9a70ff;--blue:#668dff;--pink:#d17aff;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+font-family:Inter,system-ui,Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app{min-height:100vh}
+.sidebar{
+position:fixed;inset:0 auto 0 0;width:245px;
+background:#0d0d17;border-right:1px solid var(--line);
+padding:23px 16px;z-index:10;display:flex;
+flex-direction:column;transition:.25s
+}
+.brand{display:flex;align-items:center;gap:12px;
+padding:0 8px 30px;font-size:21px;font-weight:900}
+.brand-icon{
+width:42px;height:42px;border-radius:14px;
+display:grid;place-items:center;font-size:23px;
+background:linear-gradient(135deg,#b17aff,#526eff);
+box-shadow:0 5px 25px #8d5cff55
+}
+.brand small{display:block;font-size:9px;
+color:var(--muted);letter-spacing:3px;margin-top:3px}
+.nav-title{font-size:10px;color:#77748e;
+letter-spacing:1.7px;padding:14px 12px 9px}
+.nav{
+width:100%;display:flex;align-items:center;gap:13px;
+padding:12px;border:0;background:transparent;
+color:#aaa8bd;border-radius:10px;text-align:left;
+font-size:13px;margin-bottom:4px;transition:.2s
+}
+.nav:hover,.nav.active{
+color:white;background:linear-gradient(100deg,#8d62ff30,#586fff12);
+border:1px solid #a17aff30
+}
+.nav .ico{font-size:17px;width:22px;text-align:center}
+.sidebar-bottom{margin-top:auto}
+.owner-card{
+padding:13px;border:1px solid var(--line);
+border-radius:13px;background:linear-gradient(135deg,#211633,#111625)
+}
+.owner-card strong{font-size:12px}
+.owner-card p{font-size:10px;color:var(--muted);margin:6px 0 0}
+.main{margin-left:245px;padding:25px 30px;max-width:1600px}
+.topbar{display:flex;align-items:center;justify-content:space-between;
+padding-bottom:20px;border-bottom:1px solid var(--line)}
+.top-left{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;background:var(--surface2);color:white;
+border:1px solid var(--line);border-radius:9px;padding:9px}
+.breadcrumb{font-size:12px;color:var(--muted)}
+.breadcrumb strong{color:white}
+.top-right{display:flex;align-items:center;gap:12px}
+.top-pill{font-size:11px;padding:9px 12px;border-radius:20px;
+background:#1c1830;border:1px solid #4a3578;color:#c7b1ff}
+.avatar{width:36px;height:36px;border-radius:50%;
+background:linear-gradient(135deg,#a970ff,#477dff);
+display:grid;place-items:center;font-weight:900}
+.page{display:none;animation:fade .3s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(7px)}
+to{opacity:1;transform:translateY(0)}}
+.hero{padding:30px 0 23px}
+.eyebrow{color:#b89aff;font-size:10px;
+letter-spacing:2.5px;font-weight:800}
+.hero h1{font-size:30px;letter-spacing:-1px;margin:9px 0}
+.hero p{font-size:13px;color:var(--muted);line-height:1.7;margin:0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);
+gap:13px;margin-bottom:23px}
+.stat{
+padding:17px;border:1px solid var(--line);
+border-radius:15px;background:linear-gradient(145deg,#171625,#10101a)
+}
+.stat-icon{font-size:19px}
+.stat strong{display:block;font-size:22px;margin:11px 0 5px}
+.stat span{font-size:11px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:1.2fr .8fr;gap:17px}
+.card{
+background:var(--surface);border:1px solid var(--line);
+border-radius:17px;padding:20px;margin-bottom:16px
+}
+.card-head{display:flex;align-items:center;
+justify-content:space-between;margin-bottom:18px}
+.card-head h2{font-size:15px;margin:0}
+.sub{color:var(--muted);font-size:11px}
+.field{margin-bottom:17px}
+label{display:block;font-size:12px;font-weight:700;
+margin-bottom:9px;color:#ddd9ee}
+input,textarea,select{
+width:100%;padding:12px 13px;background:#191927;
+color:white;border:1px solid var(--line);
+border-radius:10px;outline:none;font-size:12px
+}
+textarea{min-height:100px;resize:vertical;line-height:1.7}
+input:focus,textarea:focus,select:focus{border-color:var(--purple)}
+select option{background:#191927}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mode{
+padding:13px 5px;background:#191927;border:1px solid var(--line);
+border-radius:11px;color:#aaa8bd;font-size:11px
+}
+.mode span{display:block;font-size:23px;margin-bottom:7px}
+.mode.active{background:#34234e;border-color:#a17aff;color:white}
+.rangehead{display:flex;justify-content:space-between}
+.rangeval{color:#c1a5ff;font-size:12px;font-weight:800}
+input[type=range]{padding:0;accent-color:var(--purple)}
+.range-labels{display:flex;justify-content:space-between;
+font-size:10px;color:var(--muted);margin-top:8px}
+.upload{
+padding:22px 12px;text-align:center;border:1px dashed #7055a7;
+border-radius:12px;background:#191629
+}
+.upload input{display:none}
+.upload label{color:#c6adff;cursor:pointer}
+.upload p{font-size:10px;color:var(--muted);margin-bottom:0}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);
+gap:8px;margin-top:12px}
+.thumb{position:relative}
+.thumb img{width:100%;height:90px;object-fit:cover;border-radius:9px}
+.thumb button{position:absolute;right:4px;top:4px;
+background:#d74665;color:white;border:0;border-radius:50%;width:22px;height:22px}
+.primary{
+width:100%;border:0;padding:15px;border-radius:11px;
+background:linear-gradient(105deg,#9763ff,#527eff);
+color:white;font-size:13px;font-weight:900;
+box-shadow:0 7px 28px #8055ff35
+}
+.primary:hover{filter:brightness(1.12)}
+.secondary{border:1px solid var(--line);
+border-radius:9px;background:#211d32;color:#d8caff;
+padding:10px 13px;font-size:11px}
+.preview{
+min-height:230px;border:1px solid #ffffff12;border-radius:13px;
+display:grid;place-items:center;text-align:center;padding:20px;
+background:radial-gradient(ellipse at center,#34264d,#171726 65%,#10101a)
+}
+.preview-icon{font-size:48px}
+.preview strong{display:block;font-size:13px;margin-top:12px}
+.preview p{color:var(--muted);font-size:11px;line-height:1.7}
+.info{background:#1b1a2c;border:1px solid var(--line);
+padding:13px;border-radius:10px;margin-top:12px;
+font-size:11px;line-height:2;color:var(--muted)}
+.character{
+display:flex;align-items:center;gap:12px;
+background:#191927;padding:13px;border-radius:11px;
+border:1px solid var(--line)
+}
+.char-icon{width:42px;height:42px;border-radius:12px;
+display:grid;place-items:center;background:#30214a;font-size:20px}
+.empty{text-align:center;padding:23px;color:var(--muted);font-size:12px}
+.gallery-card{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery-item{background:#191927;border:1px solid var(--line);
+border-radius:12px;padding:10px}
+.gallery-item img{width:100%;height:110px;object-fit:cover;border-radius:8px}
+.gallery-item p{font-size:10px;color:var(--muted);overflow-wrap:anywhere}
+.notice{padding:13px;background:#1b192d;border-radius:10px;
+color:#c0b1ed;font-size:11px;line-height:1.7;margin-top:13px}
+footer{text-align:center;color:#66647a;font-size:10px;padding:20px}
+@media(max-width:1000px){
+.sidebar{width:205px}.main{margin-left:205px;padding:20px}
+.layout{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+.sidebar{transform:translateX(-100%);width:245px}
+.sidebar.open{transform:translateX(0);box-shadow:15px 0 60px #0009}
+.main{margin-left:0;padding:15px}
+.menu-btn{display:block}
+.stats{grid-template-columns:repeat(2,1fr)}
+.hero h1{font-size:25px}
+.card{padding:15px}
+.top-pill{display:none}
+}
+@media(max-width:380px){
+.grid2{grid-template-columns:1fr}
+.gallery{grid-template-columns:repeat(3,1fr)}
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1>🎬 My AI Video Studio</h1>
-    <p>Welcome to your private AI creation studio.</p>
+<div class="app">
 
-    <div class="card">
-      <h2>🎨 Create Image</h2>
-      <input placeholder="Describe your image">
-      <button>Generate Image</button>
-    </div>
+<aside class="sidebar" id="sidebar">
+ <div class="brand">
+  <div class="brand-icon">✦</div>
+  <div>NOVA AI<small>ULTRA PRO STUDIO</small></div>
+ </div>
 
-    <div class="card">
-      <h2>🎥 Create Video</h2>
-      <input placeholder="Describe your video">
-      <select>
-        <option>Realistic</option>
-        <option>Anime</option>
-        <option>Other Style</option>
-      </select>
-      <select>
-        <option>2 Seconds</option>
-        <option>3 Seconds</option>
-        <option>5 Seconds</option>
-      </select>
-      <button>Generate Video</button>
-      <p>Video generation will be connected in a later step.</p>
-    </div>
+ <div class="nav-title">WORKSPACE</div>
+ <button class="nav active" onclick="showPage('dashboard',this)"> <span class="ico">▦</span>Dashboard</button>
+ <button class="nav" onclick="showPage('create',this)"><span class="ico">✧</span>Create Video</button>
+ <button class="nav" onclick="showPage('gallery',this)"><span class="ico">▧</span>Reference Gallery</button>
+ <button class="nav" onclick="showPage('characters',this)"><span class="ico">♙</span>Characters</button>
+ <button class="nav" onclick="showPage('history',this)"><span class="ico">◷</span>My Creations</button>
 
-    <div class="card">
-      <h2>👤 My Characters</h2>
-      <p>Your saved characters will appear here.</p>
-    </div>
+ <div class="nav-title">PREFERENCES</div>
+ <button class="nav" onclick="showPage('settings',this)"><span class="ico">⚙</span>Settings</button>
+
+ <div class="sidebar-bottom">
+  <div class="owner-card">
+   <strong>👑 Private Owner Studio</strong>
+   <p>Personal creative workspace</p>
   </div>
+ </div>
+</aside>
+
+<main class="main">
+ <div class="topbar">
+  <div class="top-left">
+   <button class="menu-btn" onclick="toggleMenu()">☰</button>
+   <div class="breadcrumb">NOVA AI / <strong id="crumb">Dashboard</strong></div>
+  </div>
+  <div class="top-right">
+   <div class="top-pill">✦ ULTRA PRO</div>
+   <div class="avatar">N</div>
+  </div>
+ </div>
+
+<section class="page active" id="dashboard">
+ <div class="hero">
+  <div class="eyebrow">YOUR PRIVATE CREATIVE SPACE</div>
+  <h1>Welcome to NOVA AI ✨</h1>
+  <p>Bring your imagination to life with your personal AI creation studio.</p>
+ </div>
+ <div class="stats">
+  <div class="stat"><div class="stat-icon">🎬</div><strong>3:00</strong><span>Maximum selected duration</span></div>
+  <div class="stat"><div class="stat-icon">🖼️</div><strong id="refCount">0</strong><span>Reference images selected</span></div>
+  <div class="stat"><div class="stat-icon">👤</div><strong id="charCount">0</strong><span>Saved characters</span></div>
+  <div class="stat"><div class="stat-icon">✨</div><strong>720p</strong><span>Target video quality</span></div>
+ </div>
+
+ <div class="layout">
+  <section class="card">
+   <div class="card-head"><h2>✦ Quick Creation</h2><span class="sub">AI WORKSPACE</span></div>
+   <div class="field"><label>What would you like to create?</label>
+   <textarea id="quickPrompt" placeholder="Describe your next amazing video..."></textarea></div>
+   <button class="primary" onclick="quickCreate()">＋ START CREATING</button>
+  </section>
+  <section class="card">
+   <div class="card-head"><h2>⚡ Studio Overview</h2></div>
+   <div class="info">Workspace: Private Owner<br>Design: Ultra Pro<br>Video engine: Not connected<br>Storage: Browser session only</div>
+  </section>
+ </div>
+</section>
+
+<section class="page" id="create">
+ <div class="hero">
+  <div class="eyebrow">AI VIDEO GENERATOR</div>
+  <h1>Create Your Masterpiece</h1>
+  <p>Configure your video, visual style, duration and reference images.</p>
+ </div>
+ <div class="layout">
+ <div>
+ <section class="card">
+  <div class="card-head"><h2>🎬 Video Settings</h2><span class="sub">01 / CREATE</span></div>
+  <div class="field">
+   <label>Creation Mode</label>
+   <div class="modes">
+    <button class="mode active" onclick="setMode(this,'Text to Video')"><span>✍️</span>Text to Video</button>
+    <button class="mode" onclick="setMode(this,'Image to Video')"><span>🖼️</span>Image to Video</button>
+    <button class="mode" onclick="setMode(this,'Character Video')"><span>👤</span>Character Video</button>
+   </div>
+  </div>
+  <div class="field"><label>Video Prompt</label>
+   <textarea id="prompt" placeholder="Describe your story, scene, character, movements, lighting and camera angles..."></textarea>
+  </div>
+  <div class="grid2">
+   <div class="field"><label>Visual Style</label>
+    <select id="style"><option>Realistic</option><option>Anime</option><option>Cinematic</option><option>3D Animation</option><option>Cartoon</option><option>Fantasy</option><option>Horror</option><option>Cyberpunk</option><option>Documentary</option><option>Custom</option></select>
+   </div>
+   <div class="field"><label>Quality</label>
+    <select id="quality"><option>720p HD</option><option>480p</option><option>1080p (if supported)</option></select>
+   </div>
+  </div>
+  <div class="grid2">
+   <div class="field"><label>Aspect Ratio</label>
+    <select id="ratio"><option>9:16 Portrait</option><option>16:9 Landscape</option><option>1:1 Square</option></select>
+   </div>
+   <div class="field"><label>Output Format</label>
+    <select id="format"><option>MP4</option><option>WebM</option></select>
+   </div>
+  </div>
+  <div class="field">
+   <div class="rangehead"><label>Video Duration</label><strong class="rangeval" id="durationText">01:00</strong></div>
+   <input type="range" id="duration" min="60" max="180" step="15" value="60" oninput="updateDuration()">
+   <div class="range-labels"><span>1 MIN</span><span>2 MIN</span><span>3 MIN</span></div>
+  </div>
+  <div class="grid2">
+   <div class="field"><label>Voice Language</label>
+    <select id="language"><option>Hindi</option><option>English</option><option>Hindi + English</option><option>No Voice</option></select>
+   </div>
+   <div class="field"><label>Voice Style</label>
+    <select id="voice"><option>Natural</option><option>Storytelling</option><option>Professional</option><option>Energetic</option></select>
+   </div>
+  </div>
+  <div class="field"><label>Voice Script</label>
+   <textarea id="voiceScript" placeholder="Write narration or dialogue..."></textarea>
+  </div>
+  <button class="primary" onclick="generate()">✦ PREPARE VIDEO GENERATION</button>
+  <div class="notice" id="message">Your settings will be prepared here. Real AI generation requires a connected backend.</div>
+ </section>
+ </div>
+
+ <div>
+  <section class="card">
+   <div class="card-head"><h2>🖼️ Reference Gallery</h2><span class="sub">02 / ASSETS</span></div>
+   <div class="upload">
+    <input type="file" id="files" accept="image/*" multiple onchange="addImages(event)">
+    <label for="files">＋ SELECT FROM MOBILE GALLERY</label>
+    <p>Choose multiple character or scene images</p>
+   </div>
+   <div class="gallery" id="gallery"></div>
+   <div class="info" id="galleryInfo">No reference images selected.</div>
+  </section>
+  <section class="card">
+   <div class="card-head"><h2>🎥 Preview Window</h2></div>
+   <div class="preview"><div><div class="preview-icon">✦</div><strong>Video Preview</strong><p>Your generated video will appear here after backend integration.</p></div></div>
+  </section>
+ </div>
+ </div>
+</section>
+
+<section class="page" id="gallery">
+ <div class="hero"><div class="eyebrow">YOUR ASSETS</div><h1>Reference Gallery</h1><p>Manage your selected visual references.</p></div>
+ <section class="card">
+  <div class="card-head"><h2>My Reference Images</h2>
+   <button class="secondary" onclick="document.getElementById('files').click()">＋ Add Photos</button>
+  </div>
+  <div class="gallery-card" id="fullGallery"><div class="empty">No images added yet.</div></div>
+ </section>
+</section>
+
+<section class="page" id="characters">
+ <div class="hero"><div class="eyebrow">CHARACTER WORKSPACE</div><h1>My Characters</h1><p>Organize your character reference collections.</p></div>
+ <section class="card">
+  <div class="card-head"><h2>Character Library</h2>
+   <button class="secondary" onclick="document.getElementById('files').click()">＋ Add Reference</button>
+  </div>
+  <div class="character"><div class="char-icon">👤</div><div><strong>Character Reference Collection</strong><p class="sub">Add reference images to start organizing your characters.</p></div></div>
+  <div class="notice">Persistent character identity and LoRA training are not enabled yet. Those require a connected AI backend and suitable compute.</div>
+ </section>
+</section>
+
+<section class="page" id="history">
+ <div class="hero"><div class="eyebrow">YOUR PROJECTS</div><h1>My Creations</h1><p>Your future video generation history will be shown here.</p></div>
+ <section class="card"><div class="empty">🎞️<br><br>No generated videos yet.<br>Connect an AI engine to start creating.</div></section>
+</section>
+
+<section class="page" id="settings">
+ <div class="hero"><div class="eyebrow">PREFERENCES</div><h1>Studio Settings</h1><p>Personal workspace information.</p></div>
+ <section class="card">
+  <h2>⚙️ System Information</h2>
+  <div class="info">Studio: NOVA AI Ultra Pro<br>Workspace: Frontend prototype<br>Backend: Not connected<br>AI storage: Not configured<br>Access: Public GitHub Pages website</div>
+  <div class="notice">This website does not yet have secure owner authentication. Do not upload sensitive images or personal information.</div>
+ </section>
+</section>
+
+<footer>NOVA AI · ULTRA PRO PRIVATE CREATIVE STUDIO</footer>
+</main>
+</div>
+
+<script>
+let mode="Text to Video";
+let images=[];
+
+function toggleMenu(){
+ document.getElementById("sidebar").classList.toggle("open");
+}
+function showPage(id,button){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll(".nav").forEach(n=>n.classList.remove("active"));
+ if(button)button.classList.add("active");
+ const names={dashboard:"Dashboard",create:"Create Video",gallery:"Reference Gallery",characters:"Characters",history:"My Creations",settings:"Settings"};
+ document.getElementById("crumb").textContent=names[id];
+ document.getElementById("sidebar").classList.remove("open");
+ if(id==="gallery")renderFullGallery();
+}
+function setMode(button,value){
+ document.querySelectorAll(".mode").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ mode=value;
+}
+function updateDuration(){
+ let n=Number(document.getElementById("duration").value);
+ document.getElementById("durationText").textContent=
+ String(Math.floor(n/60)).padStart(2,"0")+":"+String(n%60).padStart(2,"0");
+}
+function addImages(event){
+ Array.from(event.target.files||[]).forEach(file=>{
+  if(!file.type.startsWith("image/"))return;
+  if(images.some(x=>x.name===file.name&&x.size===file.size))return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+   images.push({name:file.name,size:file.size,url:e.target.result});
+   renderGallery();
+  };
+  reader.readAsDataURL(file);
+ });
+ event.target.value="";
+}
+function removeImage(index){
+ images.splice(index,1);
+ renderGallery();
+}
+function renderGallery(){
+ const el=document.getElementById("gallery");
+ el.innerHTML="";
+ images.forEach((im,i)=>{
+  const item=document.createElement("div");
+  item.className="thumb";
+  const pic=document.createElement("img");
+  pic.src=im.url;
+  const del=document.createElement("button");
+  del.textContent="×";
+  del.onclick=()=>removeImage(i);
+  item.append(pic,del);
+  el.append(item);
+ });
+ document.getElementById("galleryInfo").textContent=images.length+" reference image(s) selected.";
+ document.getElementById("refCount").textContent=images.length;
+ renderFullGallery();
+}
+function renderFullGallery(){
+ const el=document.getElementById("fullGallery");
+ if(!el)return;
+ el.innerHTML="";
+ if(!images.length){
+  el.innerHTML='<div class="empty">No images added yet.</div>';
+  return;
+ }
+ images.forEach((im,i)=>{
+  const box=document.createElement("div");
+  box.className="gallery-item";
+  const pic=document.createElement("img");
+  pic.src=im.url;
+  const name=document.createElement("p");
+  name.textContent=im.name;
+  const del=document.createElement("button");
+  del.className="secondary";
+  del.textContent="Remove";
+  del.onclick=()=>removeImage(i);
+  box.append(pic,name,del);
+  el.append(box);
+ });
+}
+function quickCreate(){
+ const value=document.getElementById("quickPrompt").value.trim();
+ if(!value){alert("Please enter your video idea.");return;}
+ document.getElementById("prompt").value=value;
+ showPage("create",document.querySelectorAll(".nav")[1]);
+}
+function generate(){
+ const prompt=document.getElementById("prompt").value.trim();
+ const message=document.getElementById("message");
+ if(!prompt){message.textContent="Please enter your video prompt first.";return;}
+ message.textContent=
+ "Settings prepared: "+mode+" | "+
+ document.getElementById("duration").value+" seconds | "+
+ document.getElementById("style").value+" | "+
+ images.length+" references. Backend is not connected; no video has been generated.";
+}
+updateDuration();
+</script>
 </body>
 </html>
