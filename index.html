@@ -4,126 +4,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROHIT CREATION — AI Studio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="theme-color" content="#080810">
+<title>ROHIT CREATION | AI Video Studio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#080810;--panel:#11111d;--panel2:#171727;
-  --purple:#8b5cf6;--blue:#38bdf8;--text:#f5f3ff;
-  --muted:#9695ad;--line:rgba(255,255,255,.09);
+--bg:#080810;--panel:#11111d;--panel2:#171727;
+--purple:#8b5cf6;--blue:#38bdf8;--text:#f5f3ff;
+--muted:#9695ad;--line:rgba(255,255,255,.09);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 .app{display:flex;min-height:100vh}
-.sidebar{width:245px;background:#0c0c16;border-right:1px solid var(--line);padding:25px 17px;position:fixed;inset:0 auto 0 0;z-index:5}
-.brand{display:flex;align-items:center;gap:12px;padding:5px 8px 27px}
-.logo{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,#8b5cf6,#2563eb);display:grid;place-items:center;font-size:18px;font-weight:900;box-shadow:0 0 25px #7c3aed55}
-.brand-name{font-weight:900;font-size:15px;letter-spacing:1.2px}
-.brand-sub{font-size:9px;color:#a5a1bd;letter-spacing:2px;margin-top:4px}
+.sidebar{width:245px;background:#0c0c16;border-right:1px solid var(--line);padding:24px 16px;position:fixed;inset:0 auto 0 0;z-index:10}
+.brand{display:flex;align-items:center;gap:12px;padding:5px 8px 28px}
+.logo{width:45px;height:45px;border-radius:15px;background:linear-gradient(135deg,#a855f7,#2563eb);display:grid;place-items:center;font-weight:900;font-size:18px;box-shadow:0 0 25px #7c3aed66}
+.brand-name{font-size:14px;font-weight:900;letter-spacing:1px}
+.brand-sub{font-size:9px;color:#aaa5c2;letter-spacing:2px;margin-top:5px}
 .nav-label{font-size:10px;color:#77758e;font-weight:800;letter-spacing:1.7px;padding:17px 12px 9px}
-.nav{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;color:#aaa8c0;padding:13px 14px;border-radius:12px;text-align:left;margin:3px 0;font-size:13px;font-weight:600}
+.nav{display:flex;align-items:center;gap:12px;width:100%;border:1px solid transparent;background:transparent;color:#aaa8c0;padding:13px 14px;border-radius:12px;text-align:left;margin:3px 0;font-size:12px;font-weight:600}
 .nav:hover,.nav.active{background:linear-gradient(100deg,#8b5cf626,#3b82f626);color:white}
-.nav.active{border:1px solid #8b5cf644}
-.nav .ico{font-size:17px;width:22px;text-align:center}
-.sidebar-bottom{position:absolute;bottom:20px;left:17px;right:17px}
+.nav.active{border-color:#8b5cf644}
+.nav .ico{font-size:18px;width:22px;text-align:center}
+.sidebar-bottom{position:absolute;bottom:20px;left:16px;right:16px}
 .owner{background:linear-gradient(135deg,#201738,#111a31);border:1px solid #8b5cf644;border-radius:15px;padding:14px}
 .owner strong{font-size:12px}.owner small{display:block;color:var(--muted);font-size:10px;margin-top:5px}
-.main{margin-left:245px;width:calc(100% - 245px);padding:25px 32px 50px}
-.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:30px}
+.main{margin-left:245px;width:calc(100% - 245px);padding:25px 32px 55px}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
 .breadcrumb{font-size:12px;color:var(--muted)}
 .breadcrumb b{color:white}
 .top-right{display:flex;align-items:center;gap:12px}
-.status{font-size:10px;color:#86efac;background:#123023;padding:8px 12px;border-radius:30px;border:1px solid #285b42}
-.avatar{height:36px;width:36px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#0ea5e9);display:grid;place-items:center;font-weight:900}
+.status{font-size:9px;color:#86efac;background:#123023;padding:8px 12px;border-radius:30px;border:1px solid #285b42}
+.avatar{height:37px;width:37px;border-radius:50%;background:linear-gradient(135deg,#8b5cf6,#0ea5e9);display:grid;place-items:center;font-weight:900}
 .page{display:none}.page.active{display:block}
-.hero{position:relative;overflow:hidden;border:1px solid #6d45b455;border-radius:23px;padding:34px;background:linear-gradient(115deg,#1a1230,#10182d 65%,#10101c);margin-bottom:25px}
+.hero{position:relative;overflow:hidden;border:1px solid #6d45b455;border-radius:23px;padding:35px;background:linear-gradient(115deg,#1a1230,#10182d 65%,#10101c);margin-bottom:25px}
 .hero:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:#8b5cf6;filter:blur(110px);opacity:.22;right:4%;top:-100px}
 .hero-content{position:relative;z-index:1}
 .eyebrow{font-size:10px;letter-spacing:2.5px;color:#c4b5fd;font-weight:800}
-.hero h1{font-size:clamp(27px,4vw,43px);line-height:1.15;margin:13px 0 10px;font-weight:900}
+.hero h1{font-size:clamp(27px,4vw,43px);line-height:1.2;margin:14px 0 10px;font-weight:900}
 .gradient{background:linear-gradient(90deg,#c4b5fd,#67e8f9);-webkit-background-clip:text;color:transparent}
-.hero p{color:#b5b3ca;font-size:13px;max-width:520px;line-height:1.8}
+.hero p{color:#b5b3ca;font-size:13px;max-width:540px;line-height:1.8}
 .primary{border:0;background:linear-gradient(100deg,#8b5cf6,#4f46e5);color:white;border-radius:11px;padding:13px 19px;font-size:12px;font-weight:800;box-shadow:0 8px 25px #6d28d944}
 .primary:hover{filter:brightness(1.15);transform:translateY(-1px)}
-.secondary{background:#ffffff0a;border:1px solid var(--line);color:white;border-radius:10px;padding:12px 16px;font-size:12px;font-weight:700}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:25px}
+.secondary{background:#ffffff0a;border:1px solid var(--line);color:white;border-radius:10px;padding:11px 15px;font-size:11px;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:25px}
 .stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:19px}
 .stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:11px}
-.stat-icon{font-size:20px}
 .stat h2{font-size:25px;margin:14px 0 4px}
 .stat small{color:var(--muted);font-size:10px}
-.section-head{display:flex;justify-content:space-between;align-items:center;margin:28px 0 14px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:27px 0 14px}
 .section-head h2{font-size:16px;margin:0}
-.section-head span{font-size:11px;color:var(--muted)}
+.section-head span{font-size:10px;color:var(--muted)}
 .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .quick-card{background:linear-gradient(145deg,#171529,#11111d);border:1px solid var(--line);border-radius:16px;padding:20px;cursor:pointer;transition:.2s}
 .quick-card:hover{border-color:#8b5cf6;transform:translateY(-3px)}
 .quick-card .big{font-size:25px}
 .quick-card h3{font-size:13px;margin:14px 0 6px}
-.quick-card p{font-size:11px;color:var(--muted);line-height:1.6;margin:0}
-.form-grid{display:grid;grid-template-columns:1.35fr .8fr;gap:18px}
+.quick-card p{font-size:11px;color:var(--muted);line-height:1.7;margin:0}
+.form-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:17px}
 .card h2{font-size:16px;margin:0 0 7px}
-.card-desc{font-size:11px;color:var(--muted);margin:0 0 22px}
-.field{margin-bottom:18px}
-.field label{display:block;font-size:11px;font-weight:700;margin-bottom:9px;color:#d8d5e8}
+.card-desc{font-size:11px;color:var(--muted);margin:0 0 19px;line-height:1.7}
+.field{margin-bottom:17px}
+.field label{display:block;font-size:10px;font-weight:800;margin-bottom:9px;color:#d8d5e8;letter-spacing:.3px}
 input,textarea,select{width:100%;background:#0b0b15;color:white;border:1px solid var(--line);border-radius:10px;padding:13px;font-size:12px;outline:none}
-textarea{resize:vertical;min-height:120px;line-height:1.6}
+textarea{resize:vertical;min-height:110px;line-height:1.6}
 input:focus,textarea:focus,select:focus{border-color:#8b5cf6}
 select option{background:#11111d}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .range-line{display:flex;justify-content:space-between;font-size:11px;margin-bottom:10px}
 input[type=range]{padding:0;accent-color:#8b5cf6}
-.upload{border:1px dashed #66518e;background:#151326;border-radius:13px;padding:22px;text-align:center}
+.upload{border:1px dashed #66518e;background:#151326;border-radius:13px;padding:21px;text-align:center}
 .upload input{display:none}
 .upload label{cursor:pointer}
-.upload .upload-icon{font-size:27px}
-.upload p{font-size:11px;color:var(--muted);line-height:1.7}
-.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.upload .upload-icon{font-size:28px}
+.upload p{font-size:10px;color:var(--muted);line-height:1.7}
+.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
 .preview-grid img{width:100%;height:90px;object-fit:cover;border-radius:9px;border:1px solid var(--line)}
-.preview-box{min-height:200px;border:1px dashed #ffffff20;border-radius:14px;background:radial-gradient(circle at 50% 30%,#39215b66,transparent 60%),#0b0b15;display:grid;place-items:center;text-align:center;padding:20px}
+.preview-box{min-height:195px;border:1px dashed #ffffff20;border-radius:14px;background:radial-gradient(circle at 50% 30%,#39215b66,transparent 60%),#0b0b15;display:grid;place-items:center;text-align:center;padding:20px}
 .preview-box .symbol{font-size:40px}
 .preview-box p{font-size:11px;color:var(--muted);line-height:1.7}
 .full{width:100%}
-.notice{font-size:10px;color:#fbbf24;background:#302510;border:1px solid #75541d;border-radius:10px;padding:12px;line-height:1.6;margin-top:15px}
-.character-box{background:linear-gradient(135deg,#211638,#111a2d);border:1px solid #8b5cf644;border-radius:16px;padding:22px}
-.character-box h3{margin:0 0 8px;font-size:15px}
-.character-box p{color:#b6b2ca;font-size:11px;line-height:1.7}
-.empty{border:1px dashed var(--line);padding:35px;text-align:center;border-radius:15px;color:var(--muted);font-size:12px}
+.notice{font-size:10px;color:#fbbf24;background:#302510;border:1px solid #75541d;border-radius:10px;padding:12px;line-height:1.7;margin-top:14px}
+.empty{border:1px dashed var(--line);padding:32px;text-align:center;border-radius:15px;color:var(--muted);font-size:12px;line-height:1.7}
+.character-card{background:linear-gradient(145deg,#19152b,#11111d);border:1px solid var(--line);border-radius:15px;padding:15px;margin-bottom:12px}
+.character-card h3{font-size:14px;margin:0 0 8px}
+.character-card p{font-size:11px;color:var(--muted);line-height:1.6}
+.character-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.character-actions button{font-size:10px}
 .settings-row{display:flex;justify-content:space-between;gap:15px;padding:16px 0;border-bottom:1px solid var(--line);font-size:12px}
 .settings-row span{color:var(--muted)}
-.mobile-head{display:none}
 @media(max-width:850px){
- .sidebar{width:70px;padding:18px 9px}.brand{padding:5px 4px 25px}.brand-name,.brand-sub,.nav-label,.nav-text,.owner{display:none}
- .logo{width:47px;height:47px}.nav{justify-content:center;padding:13px 5px}.nav .ico{font-size:19px}
- .main{margin-left:70px;width:calc(100% - 70px);padding:20px 17px}
- .stats{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}
+.sidebar{width:70px;padding:18px 9px}.brand{padding:5px 4px 25px}.brand-name,.brand-sub,.nav-label,.nav-text,.owner{display:none}
+.logo{width:47px;height:47px}.nav{justify-content:center;padding:13px 5px}.nav .ico{font-size:19px}
+.main{margin-left:70px;width:calc(100% - 70px);padding:20px 17px}
+.stats{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}
 }
 @media(max-width:560px){
- .main{padding:16px 12px}.hero{padding:24px 19px}.quick{grid-template-columns:1fr}
- .topbar{margin-bottom:19px}.status{font-size:9px}.stats{gap:9px}.stat{padding:14px}
- .stat h2{font-size:21px}.two{grid-template-columns:1fr}
- .section-head{margin-top:22px}
+.main{padding:16px 12px}.hero{padding:24px 19px}.quick{grid-template-columns:1fr}
+.topbar{margin-bottom:19px}.status{font-size:8px}.stats{gap:9px}.stat{padding:14px}
+.stat h2{font-size:21px}.two{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 <div class="app">
+
 <aside class="sidebar">
   <div class="brand">
     <div class="logo">RC</div>
-    <div><div class="brand-name">ROHIT CREATION</div><div class="brand-sub">AI VIDEO STUDIO</div></div>
+    <div>
+      <div class="brand-name">ROHIT CREATION</div>
+      <div class="brand-sub">AI VIDEO STUDIO</div>
+    </div>
   </div>
+
   <div class="nav-label">WORKSPACE</div>
   <button class="nav active" onclick="showPage('dashboard',this)"><span class="ico">◈</span><span class="nav-text">Dashboard</span></button>
   <button class="nav" onclick="showPage('create',this)"><span class="ico">✦</span><span class="nav-text">Create Video</span></button>
   <button class="nav" onclick="showPage('gallery',this)"><span class="ico">▧</span><span class="nav-text">Reference Gallery</span></button>
   <button class="nav" onclick="showPage('characters',this)"><span class="ico">♙</span><span class="nav-text">My Characters</span></button>
+
   <div class="nav-label">LIBRARY</div>
   <button class="nav" onclick="showPage('creations',this)"><span class="ico">▶</span><span class="nav-text">My Creations</span></button>
   <button class="nav" onclick="showPage('settings',this)"><span class="ico">⚙</span><span class="nav-text">Settings</span></button>
+
   <div class="sidebar-bottom">
     <div class="owner"><strong>✦ ROHIT'S STUDIO</strong><small>Personal creative workspace</small></div>
   </div>
@@ -139,66 +145,138 @@ input[type=range]{padding:0;accent-color:#8b5cf6}
     <div class="hero">
       <div class="hero-content">
         <div class="eyebrow">✦ YOUR CREATIVE WORLD</div>
-        <h1>Welcome to <span class="gradient">ROHIT CREATION</span></h1>
+        <h1>Welcome to<br><span class="gradient">ROHIT CREATION</span></h1>
         <p>Your ideas. Your characters. Your imagination. Create your next video project from one premium AI studio.</p>
-        <button class="primary" onclick="showPage('create')">✦ Start Creating &nbsp; →</button>
+        <button class="primary" onclick="showPage('create')">✦ Start Creating →</button>
       </div>
     </div>
+
     <div class="stats">
-      <div class="stat"><div class="stat-top">Total Projects <span class="stat-icon">▣</span></div><h2 id="projectCount">0</h2><small>Your saved projects</small></div>
-      <div class="stat"><div class="stat-top">Reference Images <span class="stat-icon">▧</span></div><h2 id="imageCount">0</h2><small>Selected in this session</small></div>
-      <div class="stat"><div class="stat-top">Characters <span class="stat-icon">♙</span></div><h2>0</h2><small>Character training not connected</small></div>
-      <div class="stat"><div class="stat-top">Studio Status <span class="stat-icon">✦</span></div><h2 style="font-size:17px">Ready</h2><small>Frontend workspace</small></div>
+      <div class="stat"><div class="stat-top">Total Projects <span>▣</span></div><h2 id="projectCount">0</h2><small>Prepared in this session</small></div>
+      <div class="stat"><div class="stat-top">Reference Images <span>▧</span></div><h2 id="imageCount">0</h2><small>Selected in this session</small></div>
+      <div class="stat"><div class="stat-top">Characters <span>♙</span></div><h2 id="characterCount">0</h2><small>Saved in this browser</small></div>
+      <div class="stat"><div class="stat-top">Studio Status <span>✦</span></div><h2 style="font-size:17px">Ready</h2><small>Frontend workspace</small></div>
     </div>
+
     <div class="section-head"><h2>Quick Create</h2><span>Choose your workflow</span></div>
     <div class="quick">
-      <div class="quick-card" onclick="showPage('create')"><div class="big">✦</div><h3>Text to Video</h3><p>Turn your imagination and written prompts into a video concept.</p></div>
-      <div class="quick-card" onclick="showPage('create')"><div class="big">▧</div><h3>Image to Video</h3><p>Use your gallery images as visual references for your project.</p></div>
-      <div class="quick-card" onclick="showPage('characters')"><div class="big">♙</div><h3>Character Studio</h3><p>Plan your reusable character and keep its reference images together.</p></div>
+      <div class="quick-card" onclick="showPage('create')"><div class="big">✦</div><h3>Text to Video</h3><p>Turn your imagination into a video project.</p></div>
+      <div class="quick-card" onclick="showPage('create')"><div class="big">▧</div><h3>Image to Video</h3><p>Use gallery images as visual references.</p></div>
+      <div class="quick-card" onclick="showPage('characters')"><div class="big">♙</div><h3>Character Studio</h3><p>Create and save reusable character profiles.</p></div>
     </div>
+
     <div class="section-head"><h2>Studio Activity</h2><span>Current session</span></div>
-    <div class="empty">✦ Your creative journey starts here.<br><br>Create a project to see it in your workspace.</div>
+    <div class="empty">✦ Your creative journey starts here.<br>Create a project to see it in your workspace.</div>
   </section>
 
   <section class="page" id="create">
     <div class="section-head"><h2>✦ Create New Project</h2><span>ROHIT CREATION STUDIO</span></div>
+
     <div class="form-grid">
       <div class="card">
-        <h2>Video Settings</h2><p class="card-desc">Describe the video you want to create.</p>
-        <div class="field"><label>PROJECT NAME</label><input id="projectName" placeholder="My cinematic video"></div>
-        <div class="field"><label>VIDEO PROMPT</label><textarea id="prompt" placeholder="Describe your scene, character, camera movement, lighting, background and action..."></textarea></div>
-        <div class="two">
-          <div class="field"><label>CREATION MODE</label><select id="mode"><option>Text to Video</option><option>Image to Video</option><option>Script to Video</option></select></div>
-          <div class="field"><label>VISUAL STYLE</label><select id="style"><option>Cinematic Realistic</option><option>Anime</option><option>3D Animation</option><option>Cartoon</option><option>Fantasy</option><option>Documentary</option></select></div>
-          <div class="field"><label>QUALITY</label><select id="quality"><option>720p HD</option><option>1080p Full HD</option><option>480p</option></select></div>
-          <div class="field"><label>ASPECT RATIO</label><select id="ratio"><option>9:16 — Reels / Shorts</option><option>16:9 — YouTube</option><option>1:1 — Square</option></select></div>
+        <h2>Video Settings</h2>
+        <p class="card-desc">Describe the video you want to create.</p>
+
+        <div class="field">
+          <label>PROJECT NAME</label>
+          <input id="projectName" placeholder="My cinematic video">
         </div>
+
+        <div class="field">
+          <label>VIDEO PROMPT</label>
+          <textarea id="prompt" placeholder="Describe your scene, character, camera movement, lighting, background and action..."></textarea>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label>CREATION MODE</label>
+            <select id="mode">
+              <option>Text to Video</option>
+              <option>Image to Video</option>
+              <option>Script to Video</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>VISUAL STYLE</label>
+            <select id="style">
+              <option>Cinematic Realistic</option>
+              <option>Anime</option>
+              <option>3D Animation</option>
+              <option>Cartoon</option>
+              <option>Fantasy</option>
+              <option>Documentary</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>QUALITY</label>
+            <select id="quality">
+              <option>720p HD</option>
+              <option>1080p Full HD</option>
+              <option>480p</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>ASPECT RATIO</label>
+            <select id="ratio">
+              <option>9:16 — Reels / Shorts</option>
+              <option>16:9 — YouTube</option>
+              <option>1:1 — Square</option>
+            </select>
+          </div>
+        </div>
+
         <div class="field">
           <div class="range-line"><label>VIDEO DURATION</label><b id="durationLabel">60 seconds</b></div>
           <input type="range" id="duration" min="60" max="180" step="15" value="60" oninput="document.getElementById('durationLabel').textContent=this.value+' seconds'">
           <div class="range-line"><span>1 minute</span><span>3 minutes</span></div>
         </div>
-        <div class="two">
-          <div class="field"><label>VOICE LANGUAGE</label><select id="voice"><option>No voice</option><option>Hindi</option><option>English</option><option>Hinglish</option></select></div>
-          <div class="field"><label>VOICE STYLE</label><select id="voiceStyle"><option>Natural</option><option>Deep cinematic</option><option>Energetic</option><option>Calm narration</option></select></div>
+
+        <div class="field">
+          <label>SELECT YOUR SAVED CHARACTER</label>
+          <select id="selectedCharacter"><option value="">No character selected</option></select>
         </div>
-        <div class="field"><label>NARRATION / SCRIPT (OPTIONAL)</label><textarea id="script" placeholder="Write your voiceover or video script here..."></textarea></div>
+
+        <div class="two">
+          <div class="field">
+            <label>VOICE LANGUAGE</label>
+            <select id="voice"><option>No voice</option><option>Hindi</option><option>English</option><option>Hinglish</option></select>
+          </div>
+          <div class="field">
+            <label>VOICE STYLE</label>
+            <select id="voiceStyle"><option>Natural</option><option>Deep cinematic</option><option>Energetic</option><option>Calm narration</option></select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>NARRATION / SCRIPT</label>
+          <textarea id="script" placeholder="Write your voiceover or video script here..."></textarea>
+        </div>
+
         <button class="primary full" onclick="prepareProject()">✦ Prepare My Project</button>
-        <div class="notice">Demo mode: this page currently prepares your project settings only. A GPU-powered video backend is required to render an actual video.</div>
+        <div class="notice">Demo mode: this page prepares project settings only. An AI video backend and GPU are required to render an actual video.</div>
       </div>
 
       <div>
         <div class="card" style="margin-bottom:17px">
-          <h2>Reference Images</h2><p class="card-desc">Add images from your phone gallery.</p>
+          <h2>Reference Images</h2>
+          <p class="card-desc">Add images from your phone gallery.</p>
           <div class="upload">
-            <label for="referenceFiles"><div class="upload-icon">＋</div><b style="font-size:12px">Upload Reference Images</b><p>Tap to select multiple images<br>JPG, PNG, WEBP</p></label>
-            <input id="referenceFiles" type="file" accept="image/*" multiple onchange="handleImages(event)">
+            <label for="referenceFiles">
+              <div class="upload-icon">＋</div>
+              <b style="font-size:12px">Upload Reference Images</b>
+              <p>Tap to select multiple images<br>JPG, PNG, WEBP</p>
+            </label>
+            <input id="referenceFiles" type="file" accept="image/*" multiple>
           </div>
           <div class="preview-grid" id="imagePreview"></div>
         </div>
+
         <div class="card">
-          <h2>Live Preview</h2><p class="card-desc">Your project preview area</p>
-          <div class="preview-box"><div><div class="symbol">✧</div><b style="font-size:12px">Your Vision Starts Here</b><p>Project preview will appear here<br>when a video engine is connected.</p></div></div>
+          <h2>Live Preview</h2>
+          <p class="card-desc">Your project preview area</p>
+          <div class="preview-box">
+            <div><div class="symbol">✧</div><b style="font-size:12px">Your Vision Starts Here</b><p>Video preview will appear here<br>when a video engine is connected.</p></div>
+          </div>
         </div>
       </div>
     </div>
@@ -206,19 +284,58 @@ input[type=range]{padding:0;accent-color:#8b5cf6}
 
   <section class="page" id="gallery">
     <div class="section-head"><h2>▧ Reference Gallery</h2><span>Your selected images</span></div>
-    <div class="card"><p class="card-desc">Images selected during this browser session.</p><div class="preview-grid" id="galleryImages"></div><div class="empty" id="galleryEmpty">No reference images selected yet.</div></div>
+    <div class="card">
+      <p class="card-desc">Images selected during this browser session.</p>
+      <div class="preview-grid" id="galleryImages"></div>
+      <div class="empty" id="galleryEmpty">No reference images selected yet.</div>
+    </div>
   </section>
 
   <section class="page" id="characters">
-    <div class="section-head"><h2>♙ My Characters</h2><span>Character workspace</span></div>
-    <div class="character-box">
-      <div style="font-size:30px">✦ ♙</div>
-      <h3>Build Your Signature Character</h3>
-      <p>Keep your character reference images and description ready for future video projects. Character saving, model training and consistent generation need a connected backend.</p>
-      <button class="primary" onclick="showPage('create')">Add Character References →</button>
+    <div class="section-head"><h2>♙ Character Studio</h2><span>Your personal character library</span></div>
+    <div class="form-grid">
+      <div class="card">
+        <h2>✦ Create New Character</h2>
+        <p class="card-desc">Create and save your reusable character profile.</p>
+
+        <div class="field">
+          <label>CHARACTER NAME</label>
+          <input id="charName" placeholder="Example: Rohit's Hero">
+        </div>
+
+        <div class="field">
+          <label>CHARACTER DESCRIPTION</label>
+          <textarea id="charDescription" placeholder="Describe face, hairstyle, clothes, appearance, personality and other details..."></textarea>
+        </div>
+
+        <div class="field">
+          <label>CHARACTER STYLE</label>
+          <select id="charStyle">
+            <option>Realistic</option>
+            <option>Anime</option>
+            <option>3D Animation</option>
+            <option>Cartoon</option>
+            <option>Fantasy</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>REFERENCE PHOTOS</label>
+          <input id="charPhotos" type="file" accept="image/*" multiple>
+          <p class="card-desc">Select multiple photos from your gallery.</p>
+          <div class="preview-grid" id="charPhotoPreview"></div>
+        </div>
+
+        <button class="primary full" id="saveCharacterBtn" onclick="saveCharacter()">✦ Save My Character</button>
+        <div class="notice">Character profiles and photos are stored in this browser on this device. Keep backups of important images.</div>
+      </div>
+
+      <div class="card">
+        <h2>My Character Library</h2>
+        <p class="card-desc">Your saved characters will appear here.</p>
+        <div id="characterList" class="empty">Loading your characters...</div>
+      </div>
     </div>
-    <div class="section-head"><h2>Character Library</h2></div>
-    <div class="empty">No saved characters yet.</div>
   </section>
 
   <section class="page" id="creations">
@@ -229,13 +346,14 @@ input[type=range]{padding:0;accent-color:#8b5cf6}
   <section class="page" id="settings">
     <div class="section-head"><h2>⚙ Studio Settings</h2></div>
     <div class="card">
-      <h2>ROHIT CREATION</h2><p class="card-desc">Personal AI Video Studio</p>
+      <h2>ROHIT CREATION</h2>
+      <p class="card-desc">Personal AI Video Studio</p>
       <div class="settings-row"><b>Studio Name</b><span>ROHIT CREATION</span></div>
       <div class="settings-row"><b>Website Mode</b><span>Frontend Demo</span></div>
       <div class="settings-row"><b>Video Engine</b><span>Not connected</span></div>
-      <div class="settings-row"><b>Cloud Storage</b><span>Not configured</span></div>
+      <div class="settings-row"><b>Character Storage</b><span>Browser database</span></div>
       <div class="settings-row"><b>Character Training</b><span>Not connected</span></div>
-      <div class="notice">Security note: GitHub Pages websites are public. Do not store passwords, API keys or private personal images in this website's source code.</div>
+      <div class="notice">Security: GitHub Pages websites are public. Do not store passwords, private keys or sensitive personal images in website source code.</div>
     </div>
   </section>
 </main>
@@ -243,91 +361,324 @@ input[type=range]{padding:0;accent-color:#8b5cf6}
 
 <script>
 let selectedImages=[];
+let characterPhotos=[];
 let projects=[];
+let characters=[];
+let db=null;
 
 function showPage(id,button){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));
-  if(button) button.classList.add('active');
-  else{
-    const navs=[...document.querySelectorAll('.nav')];
-    const match=navs.find(n=>n.getAttribute('onclick')?.includes("'"+id+"'"));
-    if(match)match.classList.add('active');
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll(".nav").forEach(n=>n.classList.remove("active"));
+
+  if(button){
+    button.classList.add("active");
+  }else{
+    const nav=[...document.querySelectorAll(".nav")].find(n=>
+      n.getAttribute("onclick")?.includes("'"+id+"'")
+    );
+    if(nav)nav.classList.add("active");
   }
-  const names={dashboard:'Dashboard',create:'Create Video',gallery:'Reference Gallery',characters:'My Characters',creations:'My Creations',settings:'Settings'};
-  document.getElementById('crumb').textContent=names[id]||id;
-  if(id==='gallery')renderGallery();
-  if(id==='creations')renderProjects();
+
+  const names={
+    dashboard:"Dashboard",
+    create:"Create Video",
+    gallery:"Reference Gallery",
+    characters:"My Characters",
+    creations:"My Creations",
+    settings:"Settings"
+  };
+
+  document.getElementById("crumb").textContent=names[id]||id;
+
+  if(id==="gallery")renderGallery();
+  if(id==="creations")renderProjects();
+  if(id==="characters")loadCharacters();
 }
 
-function handleImages(event){
-  const files=[...event.target.files];
-  files.forEach(file=>{
-    if(!file.type.startsWith('image/'))return;
-    const reader=new FileReader();
-    reader.onload=e=>{
-      selectedImages.push({name:file.name,url:e.target.result});
-      renderPreviews();
+function openDatabase(){
+  return new Promise((resolve,reject)=>{
+    const request=indexedDB.open("RohitCreationDB",1);
+
+    request.onupgradeneeded=event=>{
+      const database=event.target.result;
+      if(!database.objectStoreNames.contains("characters")){
+        database.createObjectStore("characters",{keyPath:"id"});
+      }
     };
-    reader.readAsDataURL(file);
+
+    request.onsuccess=()=>{
+      db=request.result;
+      resolve(db);
+    };
+
+    request.onerror=()=>reject(request.error);
   });
-  event.target.value='';
 }
+
+function databaseAction(mode,action,data){
+  return new Promise((resolve,reject)=>{
+    if(!db)return reject(new Error("Database not ready"));
+
+    const transaction=db.transaction("characters",mode);
+    const store=transaction.objectStore("characters");
+    const request=store[action](data);
+
+    request.onsuccess=()=>resolve(request.result);
+    request.onerror=()=>reject(request.error);
+  });
+}
+
+function readFiles(files){
+  return Promise.all([...files].map(file=>new Promise((resolve,reject)=>{
+    if(!file.type.startsWith("image/"))return resolve(null);
+
+    const reader=new FileReader();
+    reader.onload=()=>resolve({name:file.name,data:reader.result});
+    reader.onerror=()=>reject(reader.error);
+    reader.readAsDataURL(file);
+  }))).then(items=>items.filter(Boolean));
+}
+
+document.getElementById("charPhotos").addEventListener("change",async event=>{
+  try{
+    characterPhotos=await readFiles(event.target.files);
+    document.getElementById("charPhotoPreview").innerHTML=
+      characterPhotos.map(photo=>
+        `<img src="${photo.data}" alt="Character reference">`
+      ).join("");
+  }catch(error){
+    alert("Photos load nahi ho payi. Dobara try karo.");
+  }
+});
+
+async function saveCharacter(){
+  const button=document.getElementById("saveCharacterBtn");
+  const name=document.getElementById("charName").value.trim();
+  const description=document.getElementById("charDescription").value.trim();
+  const style=document.getElementById("charStyle").value;
+
+  if(!name)return alert("Character ka naam likho.");
+  if(!description)return alert("Character ki description likho.");
+
+  button.disabled=true;
+  button.textContent="Saving...";
+
+  try{
+    const character={
+      id:Date.now().toString()+"-"+Math.random().toString(36).slice(2,8),
+      name,description,style,
+      photos:characterPhotos,
+      created:new Date().toLocaleDateString()
+    };
+
+    await databaseAction("readwrite","add",character);
+
+    document.getElementById("charName").value="";
+    document.getElementById("charDescription").value="";
+    document.getElementById("charPhotos").value="";
+    document.getElementById("charPhotoPreview").innerHTML="";
+    characterPhotos=[];
+
+    await loadCharacters();
+    alert("Character successfully saved!");
+  }catch(error){
+    console.error(error);
+    alert("Save nahi hua. Browser storage full ho sakti hai.");
+  }finally{
+    button.disabled=false;
+    button.textContent="✦ Save My Character";
+  }
+}
+
+async function loadCharacters(){
+  if(!db)return;
+
+  try{
+    characters=await databaseAction("readonly","getAll");
+    renderCharacters();
+    updateCharacterSelect();
+  }catch(error){
+    console.error(error);
+    document.getElementById("characterList").textContent="Characters load nahi ho paaye.";
+  }
+}
+
+function renderCharacters(){
+  const box=document.getElementById("characterList");
+
+  if(!characters.length){
+    box.className="empty";
+    box.textContent="Abhi koi character save nahi hai.";
+    return;
+  }
+
+  box.className="";
+  box.innerHTML=characters.map(character=>`
+    <div class="character-card">
+      <h3>♙ ${escapeText(character.name)}</h3>
+      <p>${escapeText(character.description)}</p>
+      <p>${escapeText(character.style)} · ${character.photos.length} reference photos</p>
+      <div class="preview-grid">
+        ${character.photos.map(photo=>
+          `<img src="${photo.data}" alt="Character reference">`
+        ).join("")}
+      </div>
+      <div class="character-actions">
+        <button class="secondary" onclick="useCharacter('${character.id}')">Use in Video</button>
+        <button class="secondary" onclick="deleteCharacter('${character.id}')">Delete</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function updateCharacterSelect(){
+  const select=document.getElementById("selectedCharacter");
+  const previous=select.value;
+
+  select.innerHTML='<option value="">No character selected</option>';
+
+  characters.forEach(character=>{
+    const option=document.createElement("option");
+    option.value=character.id;
+    option.textContent=character.name;
+    select.appendChild(option);
+  });
+
+  if(characters.some(c=>c.id===previous))select.value=previous;
+
+  document.getElementById("characterCount").textContent=characters.length;
+}
+
+function useCharacter(id){
+  showPage("create");
+  document.getElementById("selectedCharacter").value=id;
+  const character=characters.find(c=>c.id===id);
+  if(character){
+    document.getElementById("prompt").value=
+      "Use this saved character: "+character.name+". "+character.description;
+  }
+}
+
+async function deleteCharacter(id){
+  if(!confirm("Is character ko delete karna hai?"))return;
+
+  try{
+    await databaseAction("readwrite","delete",id);
+    await loadCharacters();
+  }catch(error){
+    alert("Character delete nahi hua.");
+  }
+}
+
+document.getElementById("referenceFiles").addEventListener("change",async event=>{
+  try{
+    const images=await readFiles(event.target.files);
+    selectedImages.push(...images);
+    renderPreviews();
+  }catch(error){
+    alert("Images load nahi hui.");
+  }
+  event.target.value="";
+});
 
 function renderPreviews(){
-  const html=selectedImages.map((img,i)=>`
-    <div style="position:relative">
-      <img src="${img.url}" alt="Reference image">
-      <button onclick="removeImage(${i})" style="position:absolute;top:4px;right:4px;border:0;border-radius:50%;background:#111;color:white;width:23px;height:23px">×</button>
-    </div>`).join('');
-  document.getElementById('imagePreview').innerHTML=html;
-  document.getElementById('imageCount').textContent=selectedImages.length;
+  document.getElementById("imagePreview").innerHTML=
+    selectedImages.map((img,i)=>`
+      <div style="position:relative">
+        <img src="${img.data}" alt="Reference image">
+        <button onclick="removeImage(${i})" style="position:absolute;top:4px;right:4px;background:#111;color:white;border:0;border-radius:50%;width:24px;height:24px">×</button>
+      </div>
+    `).join("");
+
+  document.getElementById("imageCount").textContent=selectedImages.length;
 }
-function removeImage(i){
-  selectedImages.splice(i,1);
+
+function removeImage(index){
+  selectedImages.splice(index,1);
   renderPreviews();
   renderGallery();
 }
+
 function renderGallery(){
-  document.getElementById('galleryImages').innerHTML=selectedImages.map(img=>`<img src="${img.url}" alt="Reference image">`).join('');
-  document.getElementById('galleryEmpty').style.display=selectedImages.length?'none':'block';
+  document.getElementById("galleryImages").innerHTML=
+    selectedImages.map(img=>
+      `<img src="${img.data}" alt="Reference image">`
+    ).join("");
+
+  document.getElementById("galleryEmpty").style.display=
+    selectedImages.length?"none":"block";
 }
+
 function prepareProject(){
-  const prompt=document.getElementById('prompt').value.trim();
-  if(!prompt){alert('Bhai, pehle apna video prompt likho.');return;}
-  const project={
-    name:document.getElementById('projectName').value.trim()||'Untitled Project',
+  const prompt=document.getElementById("prompt").value.trim();
+
+  if(!prompt)return alert("Pehle video prompt likho.");
+
+  const characterId=document.getElementById("selectedCharacter").value;
+  const character=characters.find(c=>c.id===characterId);
+
+  projects.unshift({
+    name:document.getElementById("projectName").value.trim()||"Untitled Project",
     prompt,
-    mode:document.getElementById('mode').value,
-    style:document.getElementById('style').value,
-    duration:document.getElementById('duration').value,
-    quality:document.getElementById('quality').value,
+    mode:document.getElementById("mode").value,
+    style:document.getElementById("style").value,
+    duration:document.getElementById("duration").value,
+    quality:document.getElementById("quality").value,
+    ratio:document.getElementById("ratio").value,
+    voice:document.getElementById("voice").value,
+    voiceStyle:document.getElementById("voiceStyle").value,
+    character:character?character.name:"None",
     date:new Date().toLocaleString()
-  };
-  projects.unshift(project);
-  document.getElementById('projectCount').textContent=projects.length;
-  alert('Project settings prepared! Actual video rendering ke liye AI backend connect karna hoga.');
-  showPage('creations');
+  });
+
+  document.getElementById("projectCount").textContent=projects.length;
+
+  alert("Project settings prepared! Actual video rendering ke liye AI backend connect karna hoga.");
+  showPage("creations");
 }
+
 function renderProjects(){
-  const box=document.getElementById('projectList');
-  if(!projects.length){box.className='empty';box.textContent='Your prepared projects will appear here.';return;}
-  box.className='';
-  box.innerHTML=projects.map(p=>`
+  const box=document.getElementById("projectList");
+
+  if(!projects.length){
+    box.className="empty";
+    box.textContent="Your prepared projects will appear here.";
+    return;
+  }
+
+  box.className="";
+  box.innerHTML=projects.map(project=>`
     <div class="card" style="margin-bottom:12px">
-      <h2>${escapeText(p.name)}</h2>
-      <p class="card-desc">${escapeText(p.prompt)}</p>
-      <div style="font-size:11px;color:#aaa;line-height:2">
-        ${escapeText(p.mode)} · ${escapeText(p.style)} · ${p.duration} seconds · ${escapeText(p.quality)}<br>
-        ${escapeText(p.date)}
-      </div>
+      <h2>${escapeText(project.name)}</h2>
+      <p class="card-desc">${escapeText(project.prompt)}</p>
+      <p style="font-size:11px;color:#aaa;line-height:2">
+        ${escapeText(project.mode)} · ${escapeText(project.style)}<br>
+        ${escapeText(project.duration)} seconds · ${escapeText(project.quality)}<br>
+        Character: ${escapeText(project.character)}<br>
+        Voice: ${escapeText(project.voice)} · ${escapeText(project.voiceStyle)}
+      </p>
       <div class="notice">Prepared project — video has not been rendered.</div>
-    </div>`).join('');
+    </div>
+  `).join("");
 }
-function escapeText(s){
-  return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+function escapeText(value){
+  return String(value).replace(/[&<>"']/g,char=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[char]);
 }
+
+(async function startStudio(){
+  try{
+    await openDatabase();
+    await loadCharacters();
+  }catch(error){
+    console.error(error);
+    alert("Character database start nahi hua. Browser mein IndexedDB support check karo.");
+  }
+})();
 </script>
 </body>
 </html>
